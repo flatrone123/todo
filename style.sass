@@ -1,0 +1,153 @@
+*
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+    font-family: sans-serif
+    transition: 1s
+
+.container
+    padding: 60px 40px 40px
+
+
+header
+    display: flex
+    justify-content: space-between
+
+    & .title
+        font-size: 28px
+        font-weight: 800
+        line-height: 41px
+        letter-spacing: 0.01em
+        color: #1C1C1C
+    & .edit
+        width: 86px
+        height: 27px
+
+        font-size: 14px
+        line-height: 140%
+        letter-spacing: 0.01em
+        font-weight: 500
+
+        background: #f2f2f2
+        border-radius: 4px
+        border: none
+
+
+
+.task-list
+    margin-top: 50px
+
+    font-size: 18px
+    font-weight: 500
+    line-height: 120%
+    letter-spacing: 0.01em
+    & .task
+        margin-bottom: 30px
+    & label
+        margin-left: 20px
+
+    
+input[type='checkbox']:after 
+    width: 22px
+    height: 22px
+    border-radius: 15px
+    top: -3px
+    left: -5px
+    position: relative
+    background-color: #fff
+    content: ''
+    display: inline-block
+    visibility: visible
+    border: 2px solid #23A3FF
+    
+
+input[type='checkbox']:checked:after 
+    width: 22px
+    height: 22px
+    border-radius: 15px
+    top: -3px
+    left: -5px
+    position: relative
+    background-color: #23A3FF
+    content: ''
+    display: inline-block
+    visibility: visible
+    border: 2px solid white
+
+
+.edit-input[type='checkbox']:after
+    width: 22px
+    height: 22px
+    border-radius: 15px
+    top: -3px
+    left: -5px
+    position: relative
+    color: white
+    background-color: #E85C5C
+    content: ''
+    display: inline-block
+    visibility: visible
+    border: 2px solid white
+
+
+
+.show-new-task-field
+    position: absolute
+    bottom: 40px
+    right: 40px
+    width: 60px
+    height: 60px
+
+    font-size: 32px
+    color: #23A3FF
+
+    border-radius: 100%
+    border: none
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.5)
+
+// new-task-field
+
+.new-task-field
+    display: none
+    position: absolute
+    top: 130px
+    width: 100%
+    height: 100vh
+
+    background: #fff
+    border-radius: 40px 40px 0 0
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.5)
+
+    & textarea
+        width: 100%
+        padding: 20px
+        height: 160px
+
+        color: #333
+        font-size: 16px
+        line-height: 140%
+        font-weight: 500
+        letter-spacing: 0.01em
+        border-radius: 10px
+        resize: none
+
+    & .buttons
+        display: flex
+        justify-content: space-between
+        margin-top: 30px
+
+    & button
+        width: 137px
+        height: 40px
+
+        color: #4D4D4D
+        font-size: 16px
+        font-weight: 500
+        line-height: 140%
+        letter-spacing: 0.01em
+        border-radius: 10px
+        border: none
+
+    & .add-new-task
+        color: #fff
+        background: #23A3FF
