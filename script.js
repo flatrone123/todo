@@ -16,21 +16,18 @@ editBtn.addEventListener('click', () => {
     
     toggleStyle();
 
-    let tasks = document.querySelectorAll('.task');
-    for (let task of tasks) {
+    let inputs = document.querySelectorAll('input');
+    for (let input of inputs) {
         if (editBtn.textContent == 'Отмена') {
-            task.onclick = deleteTask
+            input.onclick = deleteTask;
         } else {
-            task.onclick = null
+            input.onclick = null;
         }
     }
     
     function deleteTask() {
-        this.remove();
+        this.parentElement.remove();
     }
-
-
-
 
 
     

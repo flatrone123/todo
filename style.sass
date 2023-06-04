@@ -12,6 +12,7 @@
 header
     display: flex
     justify-content: space-between
+    align-items: center
 
     & .title
         font-size: 28px
@@ -46,6 +47,7 @@ header
     & label
         margin-left: 20px
 
+
     
 input[type='checkbox']:after 
     width: 22px
@@ -75,7 +77,7 @@ input[type='checkbox']:checked:after
     border: 2px solid white
 
 
-.edit-input[type='checkbox']:after
+.edit-input[type='checkbox']:checked:after
     width: 22px
     height: 22px
     border-radius: 15px
@@ -92,7 +94,7 @@ input[type='checkbox']:checked:after
 
 
 .show-new-task-field
-    position: absolute
+    position: fixed
     bottom: 40px
     right: 40px
     width: 60px
