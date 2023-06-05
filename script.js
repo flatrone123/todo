@@ -1,37 +1,92 @@
+downloadTasks();
+
 let showNewTaskFieldBtn = document.querySelector('.show-new-task-field');
 showNewTaskFieldBtn.addEventListener('click', () => {
     showHideNewTaskField();
-
-    let addNewTaskBtn = document.querySelector('.add-new-task');
-    addNewTaskBtn.addEventListener('click',() => {
-        addTask();
-    })
-
 })
 
+let addNewTaskBtn = document.querySelector('.add-new-task');
+addNewTaskBtn.addEventListener('click',() => {
+    addTask();
+})
 
 let editBtn = document.querySelector('.edit');
 editBtn.addEventListener('click', () => {
     toggleStyle();
     deleteTask();
-    // editTask();
+    editTask();
 })
 
-// function editTask() {
-//     let tasks = document.querySelectorAll('p');
-//     for (let task of tasks) {
-//         task.addEventListener('click', () => {
-//             showHideNewTaskField();
 
-//             let editedTask = document.querySelector('textarea');
-//             let btn = document.querySelector('.add-new-task');
 
-//             btn.addEventListener('click', () => {
-//                 task.textContent = editedTask;
-//             })
-//         })
-//     }
-// }
+
+
+
+
+document.addEventListener('click', () => {
+    let tasks = document.querySelectorAll('.task');
+    let obj = {};
+
+    for (let i = 0; i < tasks.length; i++) {
+        let done = tasks[i].children[0].classList.contains('done-circle');
+        let text = tasks[i].children[1].textContent;
+
+        obj[i] = {'task': text, 'status': done};
+        console.log(obj);
+    }
+
+    let strObj = JSON.stringify(obj);
+    localStorage.setItem('tasks', strObj);
+
+})
+
+
+
+
+
+
+
+function downloadTasks() {
+    let strObj = localStorage.getItem('tasks');
+    let obj = JSON.parse(strObj);
+
+    for (let elem in obj) {
+        let task = obj[elem].task; 
+        let status = obj[elem].status
+    }
+}
+
+
+
+
+
+function editTask() {
+    let tasks = document.querySelectorAll('p');
+ 
+
+    if (editBtn.textContent == 'Править') {
+        for (let task of tasks) {
+            task.onclick = null;
+        }
+    } else {
+        for (let task of tasks) {
+            task.onclick = () => {
+                showHideEditTaskField();
+    
+                let editedTask = document.querySelector('.edited-task');
+                let btn = document.querySelector('.edit-task');
+    
+                let t = this;
+                btn.onclick = () => {
+                    task.textContent = editedTask.value;
+                }
+            }
+        }
+    }
+
+
+    
+}
 
 function deleteTask() {
     let circles = document.querySelectorAll('.circle');
@@ -67,7 +122,7 @@ function toggleStyle() {
 }
 
 function addTask() {
-    let textArea = document.querySelector('textarea');
+    let textArea = document.querySelector('.textarea');
     let newTask = textArea.value;
 
     let circle = document.createElement('div');
@@ -96,6 +151,19 @@ function showHideNewTaskField() {
         newTaskField.style.display = 'none';
     })
     let addNewTaskBtn = document.querySelector('.add-new-task');
+    addNewTaskBtn.addEventListener('click', () => {
+        newTaskField.style.display = 'none';
+    })
+}
+
+function showHideEditTaskField() {
+    let newTaskField = document.querySelector('.edit-task-field');
+    newTaskField.style.display = 'block';
+    let closeNewTaskFieldBtn = document.querySelector('.close-edit-task-field');
+    closeNewTaskFieldBtn.addEventListener('click', () => {
+        newTaskField.style.display = 'none';
+    })
+    let addNewTaskBtn = document.querySelector('.edit-task');
     addNewTaskBtn.addEventListener('click', () => {
         newTaskField.style.display = 'none';
     })
