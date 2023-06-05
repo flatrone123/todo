@@ -1,5 +1,4 @@
 let showNewTaskFieldBtn = document.querySelector('.show-new-task-field');
-
 showNewTaskFieldBtn.addEventListener('click', () => {
     showHideNewTaskField();
 
@@ -13,76 +12,81 @@ showNewTaskFieldBtn.addEventListener('click', () => {
 
 let editBtn = document.querySelector('.edit');
 editBtn.addEventListener('click', () => {
-    
     toggleStyle();
+    deleteTask();
+    // editTask();
+})
 
-    let inputs = document.querySelectorAll('input');
-    for (let input of inputs) {
+// function editTask() {
+//     let tasks = document.querySelectorAll('p');
+//     for (let task of tasks) {
+//         task.addEventListener('click', () => {
+//             showHideNewTaskField();
+
+//             let editedTask = document.querySelector('textarea');
+//             let btn = document.querySelector('.add-new-task');
+
+//             btn.addEventListener('click', () => {
+//                 task.textContent = editedTask;
+//             })
+//         })
+//     }
+// }
+
+function deleteTask() {
+    let circles = document.querySelectorAll('.circle');
+    for (let circle of circles) {
         if (editBtn.textContent == 'Отмена') {
-            input.onclick = deleteTask;
+            circle.onclick = foo;
         } else {
-            input.onclick = null;
+            circle.onclick = null;
         }
     }
     
-    function deleteTask() {
+    function foo() {
         this.parentElement.remove();
-    }
-
-
-    
-})
-
-
-
-
-
-
-
-
-
-
-
-function toggleStyle() {
-    if (editBtn.textContent == 'Править') {
-        editBtn.textContent = 'Отмена';
-    } else {
-        editBtn.textContent = 'Править';
-    }
-
-    let inputs = document.querySelectorAll('input');
-    for (let input of inputs) {
-        input.classList.toggle('edit-input');
     }
 }
 
+function toggleStyle() {
+    let circles = document.querySelectorAll('.circle');
 
+    if (editBtn.textContent == 'Править') {
+        editBtn.textContent = 'Отмена';
+
+        for (circle of circles) {
+            circle.classList.add('edit-circle');
+        }
+    } else {
+        editBtn.textContent = 'Править';
+
+        for (circle of circles) {
+            circle.classList.remove('edit-circle');
+        }
+    }
+}
 
 function addTask() {
     let textArea = document.querySelector('textarea');
     let newTask = textArea.value;
 
+    let circle = document.createElement('div');
+    circle.classList.add('circle');
+    circle.addEventListener('click', () => {
+        circle.classList.toggle('done-circle');
+    })
     
-    let input = document.createElement('input');
-    input.type = 'checkbox';
-    input.id = newTask
+    let p = document.createElement('p');
+    p.textContent = newTask;
 
-    let label = document.createElement('label');
-    label.textContent = newTask;
-    label.setAttribute('for', newTask);
-
-    
     let task = document.createElement('div');
     task.classList.add('task');
-    task.append(input);
-    task.append(label);
+    task.append(circle);
+    task.append(p);
 
     let taskList = document.querySelector('.task-list');
     taskList.append(task);
 }
-
-
-
 
 function showHideNewTaskField() {
     let newTaskField = document.querySelector('.new-task-field');

@@ -3,7 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: sans-serif;
-  transition: 1s;
+  transition: 0.4s;
 }
 
 .container {
@@ -35,6 +35,7 @@ header .edit {
 }
 
 .task-list {
+  position: relative;
   margin-top: 50px;
   font-size: 18px;
   font-weight: 500;
@@ -43,52 +44,31 @@ header .edit {
 }
 .task-list .task {
   margin-bottom: 30px;
+  display: flex;
+  align-items: center;
 }
-.task-list label {
-  margin-left: 20px;
-}
-
-input[type=checkbox]:after {
+.task-list .task .circle {
   width: 22px;
   height: 22px;
-  border-radius: 15px;
-  top: -3px;
-  left: -5px;
-  position: relative;
-  background-color: #fff;
-  content: "";
-  display: inline-block;
-  visibility: visible;
+  padding: 5px;
+  border-radius: 100px;
   border: 2px solid #23A3FF;
 }
-
-input[type=checkbox]:checked:after {
-  width: 22px;
-  height: 22px;
-  border-radius: 15px;
-  top: -3px;
-  left: -5px;
-  position: relative;
-  background-color: #23A3FF;
-  content: "";
-  display: inline-block;
-  visibility: visible;
-  border: 2px solid white;
+.task-list .task p {
+  margin-left: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: 0.01em;
 }
 
-.edit-input[type=checkbox]:checked:after {
-  width: 22px;
-  height: 22px;
-  border-radius: 15px;
-  top: -3px;
-  left: -5px;
-  position: relative;
-  color: white;
-  background-color: #E85C5C;
-  content: "";
-  display: inline-block;
-  visibility: visible;
-  border: 2px solid white;
+.done-circle {
+  background: #23A3FF;
+}
+
+.edit-circle {
+  background: red;
+  border: none;
 }
 
 .show-new-task-field {
