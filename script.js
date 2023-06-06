@@ -7,7 +7,9 @@ showNewTaskFieldBtn.addEventListener('click', () => {
 
 let addNewTaskBtn = document.querySelector('.add-new-task');
 addNewTaskBtn.addEventListener('click',() => {
-    addTask();
+    let textArea = document.querySelector('.textarea');
+    let newTask = textArea.value;
+    addTask(newTask);
 })
 
 let editBtn = document.querySelector('.edit');
@@ -16,12 +18,6 @@ editBtn.addEventListener('click', () => {
     deleteTask();
     editTask();
 })
-
-
-
-
-
-
 
 document.addEventListener('click', () => {
     let tasks = document.querySelectorAll('.task');
@@ -53,6 +49,7 @@ function downloadTasks() {
     for (let elem in obj) {
         let task = obj[elem].task; 
         let status = obj[elem].status
+        addTask(task, status);
     }
 }
 
@@ -76,7 +73,6 @@ function editTask() {
                 let editedTask = document.querySelector('.edited-task');
                 let btn = document.querySelector('.edit-task');
     
-                let t = this;
                 btn.onclick = () => {
                     task.textContent = editedTask.value;
                 }
@@ -121,15 +117,15 @@ function toggleStyle() {
     }
 }
 
-function addTask() {
-    let textArea = document.querySelector('.textarea');
-    let newTask = textArea.value;
-
+function addTask(newTask, status = false) {
     let circle = document.createElement('div');
     circle.classList.add('circle');
     circle.addEventListener('click', () => {
         circle.classList.toggle('done-circle');
     })
+    if (status == true) {
+        circle.classList.add('done-circle');
+    }
     
     let p = document.createElement('p');
     p.textContent = newTask;
