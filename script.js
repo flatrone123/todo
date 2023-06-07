@@ -1,4 +1,5 @@
 downloadTasks();
+showHideEditBtn();
 
 let showNewTaskFieldBtn = document.querySelector('.show-new-task-field');
 showNewTaskFieldBtn.addEventListener('click', () => {
@@ -34,13 +35,23 @@ document.addEventListener('click', () => {
     let strObj = JSON.stringify(obj);
     localStorage.setItem('tasks', strObj);
 
+    showHideEditBtn();
+
 })
 
 
 
 
 
-
+function showHideEditBtn() {
+    let taskList = document.querySelector('.task-list');
+    if (taskList.children.length == 0) {
+        let editBtn = document.querySelector('.edit');
+        editBtn.style.display = 'none';
+    } else {
+        editBtn.style.display = 'block';
+    }
+}
 
 function downloadTasks() {
     let strObj = localStorage.getItem('tasks');
@@ -52,10 +63,6 @@ function downloadTasks() {
         addTask(task, status);
     }
 }
-
-
-
-
 
 function editTask() {
     let tasks = document.querySelectorAll('p');
